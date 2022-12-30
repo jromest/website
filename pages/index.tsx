@@ -62,6 +62,13 @@ export default function Home() {
         <meta property="og:url" content={siteUrl} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={metaImage} />
+
+        <script
+          async
+          defer
+          data-website-id="5a605cc0-d0dc-4223-a4c3-51cb2b3c0a9e"
+          src="https://analytics.jromest.com/umami.js"
+        ></script>
       </Head>
 
       <Layout>
