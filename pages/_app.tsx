@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import { Analytics } from '@vercel/analytics/react';
 import { Karla } from "@next/font/google";
 import "../styles/globals.css";
 
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
       className={`${karla.variable} bg-dark-purple font-sans text-xl font-normal text-slate-800`}
     >
       <Component {...pageProps} />
+      <Analytics />
     </div>
   );
 }
