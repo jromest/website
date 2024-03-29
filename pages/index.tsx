@@ -65,13 +65,13 @@ export default function Home() {
       </Head>
 
       <Layout>
-        <main role="main" className="bg-white">
+        <>
           <Hero
             title={author}
             description="front end web developer and designer"
           />
 
-          <section className="py-16 px-5 leading-9 sm:py-20">
+          <section className="px-5 py-16 leading-9 sm:py-20">
             <article className="section-container">
               <div className="flex flex-col items-center justify-around pb-12 sm:flex-row sm:pb-20">
                 <Image
@@ -113,7 +113,7 @@ export default function Home() {
             </article>
           </section>
 
-          <section className="bg-gray-100 py-16 px-5 leading-9 sm:py-20">
+          <section className="bg-gray-100 px-5 py-16 leading-9 sm:py-20">
             <article className="section-container">
               <h2 className="mb-12 text-3xl font-bold">Blog</h2>
 
@@ -143,7 +143,7 @@ export default function Home() {
 
           <section
             id="projectSection"
-            className="py-16 px-5 leading-9 sm:py-20"
+            className="px-5 py-16 leading-9 sm:py-20"
           >
             <article className="section-container">
               <h2 className="mb-12 text-3xl font-bold">Projects</h2>
@@ -250,7 +250,7 @@ export default function Home() {
 
           <section
             id="contactSection"
-            className="bg-gray-100 py-16 px-5 leading-9 sm:py-20"
+            className="bg-gray-100 px-5 py-16 leading-9 sm:py-20"
           >
             <article className="section-container">
               <h2 className="mb-12 text-3xl font-bold">Stay Connected</h2>
@@ -276,10 +276,10 @@ export default function Home() {
             </article>
           </section>
 
-          <section className="py-16 px-5 leading-9 sm:py-20">
+          <section className="px-5 py-16 leading-9 sm:py-20">
             <Bio image={avatarImg} name={author} bio={bio} />
           </section>
-        </main>
+        </>
       </Layout>
     </>
   );
