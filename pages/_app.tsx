@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { Analytics } from '@vercel/analytics/react';
-import { Karla } from "@next/font/google";
+import { Karla } from "next/font/google";
 import "../styles/globals.css";
 
 const karla = Karla({
