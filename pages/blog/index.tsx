@@ -50,6 +50,8 @@ interface BlogProps {
 }
 
 const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
+  const canonicalUrl = `${siteUrl}/blog`;
+
   return (
     <>
       <Head>
@@ -58,6 +60,7 @@ const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
         <meta name="author" content={author} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={canonicalUrl} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
@@ -68,7 +71,7 @@ const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
 
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteUrl} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={metaImage} />
       </Head>
