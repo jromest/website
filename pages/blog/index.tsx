@@ -8,6 +8,7 @@ import matter from "gray-matter";
 import { Layout } from "../../components/Layout";
 import { config } from "../../config";
 import Link from "next/link";
+import { BLOG_POST_PATH, blogPostFilePath } from "../../utils/mdx";
 
 interface BlogPost {
   data: {
@@ -23,12 +24,6 @@ const { author, description, socials, siteUrl } = config;
 const title = `Blog Posts - ${author}`;
 
 const metaImage = "/meta-image.png";
-
-const BLOG_POST_PATH = path.join(process.cwd(), "content");
-
-const blogPostFilePath = fs
-  .readdirSync(BLOG_POST_PATH)
-  .filter((path) => /\.mdx?$/.test(path));
 
 const getBlogPost = (): BlogPost[] => {
   const blogPosts = blogPostFilePath.map((filePath) => {
@@ -81,7 +76,7 @@ const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
       <Layout>
         <section className="px-5 py-16 leading-9 sm:py-20">
           <article className="section-container">
-            <h1 className="relative z-0 mb-14 w-max text-4xl font-bold after:absolute after:bottom-1 after:left-0 after:right-0 after:-z-10 after:h-1/2 after:bg-yellow-gold">
+            <h1 className="relative z-0 mb-14 w-max text-4xl font-bold after:absolute after:bottom-1 after:left-0 after:right-0 after:-z-10 after:h-1/2 after:-rotate-1 after:bg-yellow-gold">
               Blog Posts
             </h1>
 
