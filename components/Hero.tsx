@@ -1,4 +1,4 @@
-import { Link as ScrollTo } from "react-scroll";
+import Link from "next/link";
 
 interface HeroProps {
   title: string;
@@ -6,7 +6,7 @@ interface HeroProps {
 }
 
 export const Hero = ({ title, description }: HeroProps) => (
-  <section className="bg-dark-purple bg-gradient-to-bl from-light-purple to-dark-purple py-16 px-5 sm:py-0">
+  <section className="bg-dark-purple bg-gradient-to-bl from-light-purple to-dark-purple px-5 py-16 sm:py-0">
     <article className="section-container flex flex-col justify-center text-center text-white sm:h-[400px] sm:text-left">
       <h1 className="mb-6 text-4xl font-bold sm:text-5xl">
         Hi, I&apos;m <span className="whitespace-nowrap">{title}</span>
@@ -15,15 +15,15 @@ export const Hero = ({ title, description }: HeroProps) => (
       <h2 className="mb-6 text-2xl">{description}</h2>
 
       <div>
-        <ScrollTo to="contactSection" smooth offset={-50} duration={500}>
+        <Link href="#contactSection">
           <button className="btn-primary">Let&apos;s work together</button>
-        </ScrollTo>
+        </Link>
 
-        <ScrollTo to="projectSection" smooth offset={-50} duration={500}>
+        <Link href="#projectSection">
           <button className="btn-secondary">
             Check out my projects &#8594;
           </button>
-        </ScrollTo>
+        </Link>
       </div>
     </article>
   </section>
