@@ -4,6 +4,7 @@ import type { NextPage } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import rehypePrism from "rehype-prism-plus";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 
@@ -103,7 +104,7 @@ export const getStaticProps = async ({
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
+      rehypePlugins: [rehypePrism],
     },
     scope: data,
   });
