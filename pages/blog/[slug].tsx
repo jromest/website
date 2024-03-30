@@ -7,9 +7,11 @@ import matter from "gray-matter";
 import rehypePrism from "rehype-prism-plus";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
+import type { MDXComponents } from "mdx/types";
 
 import { BLOG_POST_PATH, blogPostFilePath } from "../../utils/mdx";
 import { Layout } from "../../components/Layout";
+import { Pre } from "../../components/Pre";
 import { config } from "../../config";
 
 const { author, socials, siteUrl } = config;
@@ -28,6 +30,10 @@ interface BlogPostProps {
   meta: BlogPostMeta;
   slug: string;
 }
+
+const components = {
+  pre: Pre,
+} as MDXComponents;
 
 const BlogPost: NextPage<BlogPostProps> = ({ source, meta, slug }) => {
   const { title, description, createdAt } = meta;
@@ -68,8 +74,8 @@ const BlogPost: NextPage<BlogPostProps> = ({ source, meta, slug }) => {
               <time className="text-slate-500">{createdAt}</time>
             </div>
 
-            <div className="prose prose-xl prose-slate prose-a:link prose-a:no-underline mx-auto md:mx-0">
-              <MDXRemote {...source} />
+            <div className="prose prose-xl prose-slate prose-code:before:content-none prose-code:after:content-none prose-a:link prose-a:no-underline mx-auto md:mx-0">
+              <MDXRemote {...source} components={components} />
             </div>
           </article>
         </section>
