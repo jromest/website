@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Layout } from "../components/Layout";
-import { Hero } from "../components/Hero";
-import { Bio } from "../components/Bio";
-import { config } from "../config";
+import { Layout } from "@/components/Layout";
+import { Hero } from "@/components/Hero";
+import { Bio } from "@/components/Bio";
+import { config } from "config";
 
 const webDesignImage = "/responsive-design.svg";
 const checkIcon = "/checkmark-outline.svg";

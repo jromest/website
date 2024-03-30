@@ -1,14 +1,14 @@
 import React from "react";
+import Link from "next/link";
 import type { NextPage } from "next";
 import Head from "next/head";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-import { Layout } from "../../components/Layout";
-import { config } from "../../config";
-import Link from "next/link";
-import { BLOG_POST_PATH, blogPostFilePath } from "../../utils/mdx";
+import { Layout } from "@/components/Layout";
+import { BLOG_POST_PATH, blogPostFilePath } from "@/utils/mdx";
+import { config } from "config";
 
 interface BlogPost {
   data: {

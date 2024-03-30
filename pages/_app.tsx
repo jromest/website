@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { Karla } from "next/font/google";
-import "../styles/globals.css";
-import "../styles/prism-theme.css";
+import "@/styles/globals.css";
+import "@/styles/prism-theme.css";
 
 const karla = Karla({
   subsets: ["latin"],

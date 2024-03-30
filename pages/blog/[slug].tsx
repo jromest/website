@@ -11,10 +11,10 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { MDXComponents } from "mdx/types";
 
-import { BLOG_POST_PATH, blogPostFilePath } from "../../utils/mdx";
-import { Layout } from "../../components/Layout";
-import { Pre } from "../../components/Pre";
-import { config } from "../../config";
+import { Layout } from "@/components/Layout";
+import { Pre } from "@/components/Pre";
+import { BLOG_POST_PATH, blogPostFilePath } from "@/utils/mdx";
+import { config } from "config";
 
 const { author, socials, siteUrl } = config;
 
