@@ -83,13 +83,13 @@ const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
               Blog Posts
             </h1>
 
-            <ul>
+            <ul className="space-y-8">
               {blogPosts.map((post) => (
                 <li key={post.slug}>
                   <h2 className="text-3xl font-bold">
                     <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
                   </h2>
-                  <p>{post.data.createdAt}</p>
+                  <time className="text-slate-500">{post.data.createdAt}</time>
                 </li>
               ))}
             </ul>

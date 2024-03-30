@@ -64,10 +64,10 @@ const BlogPost: NextPage<BlogPostProps> = ({ source, meta, slug }) => {
               <h1 className="relative z-0 text-4xl font-bold after:absolute after:bottom-1 after:left-0 after:right-0 after:-z-10 after:h-6 after:-rotate-1 after:bg-yellow-gold after:md:h-1/2">
                 {title}
               </h1>
-              <time className="text-gray-500">{createdAt}</time>
+              <time className="text-slate-500">{createdAt}</time>
             </div>
 
-            <div className="prose prose-xl">
+            <div className="prose prose-xl prose-slate prose-a:link prose-a:no-underline mx-auto md:mx-0">
               <MDXRemote {...source} />
             </div>
           </article>

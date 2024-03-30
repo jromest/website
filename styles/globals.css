@@ -6,8 +6,9 @@
   .section-container {
     @apply m-0 mx-auto max-w-[960px];
   }
+
   .btn-primary {
-    @apply mt-4 rounded-sm border-2 border-solid border-yellow-gold bg-yellow-gold px-5 py-2 text-dark-purple transition duration-500 hover:border-darken-yellow-gold hover:bg-darken-yellow-gold sm:mt-0 sm:mr-4;
+    @apply mt-4 rounded-sm border-2 border-solid border-yellow-gold bg-yellow-gold px-5 py-2 text-dark-purple transition duration-500 hover:border-darken-yellow-gold hover:bg-darken-yellow-gold sm:mr-4 sm:mt-0;
   }
 
   .btn-secondary {
