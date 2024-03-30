@@ -4,6 +4,8 @@ import type { NextPage } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -74,7 +76,7 @@ const BlogPost: NextPage<BlogPostProps> = ({ source, meta, slug }) => {
               <time className="text-slate-500">{createdAt}</time>
             </div>
 
-            <div className="prose prose-xl prose-slate prose-code:before:content-none prose-code:after:content-none prose-a:link prose-a:no-underline mx-auto md:mx-0">
+            <div className="prose-a:link prose prose-xl prose-slate mx-auto prose-a:no-underline prose-code:before:content-none prose-code:after:content-none md:mx-0 [&_a]:hover:prose-headings:inline-block">
               <MDXRemote {...source} components={components} />
             </div>
           </article>
@@ -110,7 +112,25 @@ export const getStaticProps = async ({
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [rehypePrism],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "append",
+            properties: {
+              className: "not-prose text-slate-500 px-2 font-normal hidden",
+              ariaHidden: true,
+              tabIndex: -1,
+            },
+            content: {
+              type: "text",
+              value: "#",
+            },
+          },
+        ],
+        rehypePrism,
+      ],
     },
     scope: data,
   });
