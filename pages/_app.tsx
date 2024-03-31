@@ -12,7 +12,7 @@ const karla = Karla({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div
-      className={`${karla.variable} bg-dark-purple font-sans text-xl font-normal text-slate-800`}
+      className={`${karla.variable} bg-white font-sans text-xl font-normal text-slate-800`}
     >
       <Component {...pageProps} />
       <Analytics />

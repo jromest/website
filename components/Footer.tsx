@@ -5,7 +5,7 @@ interface FooterProps {
 }
 
 export const Footer = ({ name }: FooterProps) => (
-  <footer className="bg-white px-5 pb-12 leading-9">
+  <footer className="px-5 pb-12 leading-9">
     <div className="section-container flex flex-col items-center justify-center text-center sm:flex-row sm:justify-between">
       <Social color="#666" />
 

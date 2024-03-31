@@ -22,7 +22,7 @@ interface HeaderProps {
 
 export const Header = ({ name }: HeaderProps) => {
   return (
-    <header className="sticky top-[-60px] z-10 bg-transparent-dark-purple p-5 text-white backdrop-blur-md sm:top-0">
+    <header className="bg-dark-purple p-5 text-white">
       <div className="section-container flex flex-row flex-wrap items-center justify-between">
         <Link href="/" className="text-2xl font-bold">
           {name}
