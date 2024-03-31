@@ -8,6 +8,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { MDXComponents } from "mdx/types";
@@ -112,7 +113,15 @@ export const getStaticProps = async ({
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [
+        remarkGfm,
+        [
+          remarkToc,
+          {
+            heading: "contents",
+          },
+        ],
+      ],
       rehypePlugins: [
         rehypeSlug,
         [
