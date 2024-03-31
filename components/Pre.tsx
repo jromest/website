@@ -52,9 +52,9 @@ export const Pre = ({ children }: PreProps) => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className={copied ? "text-green-400" : "text-gray-300"}
           >
             {copied ? (
