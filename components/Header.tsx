@@ -1,15 +1,18 @@
 import Link from "next/link";
-import { Link as ScrollTo } from "react-scroll";
 import { Social } from "./Social";
 
 const navItems = [
   {
+    name: "Blog",
+    path: "/blog",
+  },
+  {
     name: "Projects",
-    path: "projectSection",
+    path: "/#projectSection",
   },
   {
     name: "Contact",
-    path: "contactSection",
+    path: "/#contactSection",
   },
 ];
 
@@ -19,7 +22,7 @@ interface HeaderProps {
 
 export const Header = ({ name }: HeaderProps) => {
   return (
-    <header className="sticky top-[-60px] z-10 bg-transparent-dark-purple p-5 text-white backdrop-blur-md sm:top-0">
+    <header className="bg-dark-purple p-5 text-white">
       <div className="section-container flex flex-row flex-wrap items-center justify-between">
         <Link href="/" className="text-2xl font-bold">
           {name}
@@ -33,15 +36,12 @@ export const Header = ({ name }: HeaderProps) => {
             {navItems.length !== 0
               ? navItems.map((nav, index) => (
                   <li key={index}>
-                    <ScrollTo
-                      to={nav.path}
-                      smooth
-                      offset={-50}
-                      duration={500}
-                      className="cursor-pointer rounded-sm py-2 px-3 transition duration-500 hover:bg-lighten-dark-purple sm:mr-4"
+                    <Link
+                      href={nav.path}
+                      className="cursor-pointer rounded-sm px-3 py-2 transition duration-500 hover:bg-lighten-dark-purple sm:mr-4"
                     >
                       {nav.name}
-                    </ScrollTo>
+                    </Link>
                   </li>
                 ))
               : null}

@@ -1,9 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Layout } from "../components/Layout";
-import { Hero } from "../components/Hero";
-import { Bio } from "../components/Bio";
-import { config } from "../config";
+import Link from "next/link";
+import type { NextPage } from "next";
+
+import { Layout } from "@/components/Layout";
+import { Hero } from "@/components/Hero";
+import { Bio } from "@/components/Bio";
+import { getBlogPost } from "@/utils/mdx";
+import type { BlogPost } from "@/utils/types";
+import { config } from "config";
 
 const webDesignImage = "/responsive-design.svg";
 const checkIcon = "/checkmark-outline.svg";
@@ -40,7 +45,11 @@ const projects = [
   },
 ];
 
-export default function Home() {
+interface HomeProps {
+  blogPosts: BlogPost[];
+}
+
+const Home: NextPage<HomeProps> = ({ blogPosts }) => {
   return (
     <>
       <Head>
@@ -49,6 +58,7 @@ export default function Home() {
         <meta name="author" content={author} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={siteUrl} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
@@ -65,14 +75,39 @@ export default function Home() {
       </Head>
 
       <Layout>
-        <main role="main" className="bg-white">
+        <>
           <Hero
             title={author}
             description="front end web developer and designer"
           />
 
-          <section className="py-16 px-5 leading-9 sm:py-20">
+          <section className="px-5 py-16 leading-9 sm:py-20">
             <article className="section-container">
+              <h2 className="mb-12 text-3xl font-bold">Latest Post</h2>
+
+              <ul className="space-y-9">
+                {blogPosts.map((post) => (
+                  <li key={post.slug}>
+                    <h3 className="text-2xl font-bold">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="text-dark-purple"
+                      >
+                        {post.data.title}
+                      </Link>
+                    </h3>
+
+                    <p className="mt-2">{post.data.description} </p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </section>
+
+          <section className="bg-gray-100 px-5 py-16 leading-9 sm:py-20">
+            <article className="section-container">
+              <h2 className="mb-12 text-3xl font-bold">About</h2>
+
               <div className="flex flex-col items-center justify-around pb-12 sm:flex-row sm:pb-20">
                 <Image
                   src={webDesignImage}
@@ -113,37 +148,9 @@ export default function Home() {
             </article>
           </section>
 
-          <section className="bg-gray-100 py-16 px-5 leading-9 sm:py-20">
-            <article className="section-container">
-              <h2 className="mb-12 text-3xl font-bold">Blog</h2>
-
-              <h3 className="mb-6 font-bold">Coming soon...</h3>
-
-              <p className="mb-6">
-                I&apos;m working on a blog to share my ideas, document my
-                learning journey, and write articles about what I&apos;ve
-                learned. Mainly about learning to code, web development, and
-                javascript.
-              </p>
-
-              <p>
-                Follow me on twitter{" "}
-                <a
-                  href={socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link"
-                >
-                  @jromest_
-                </a>{" "}
-                for updates.
-              </p>
-            </article>
-          </section>
-
           <section
             id="projectSection"
-            className="py-16 px-5 leading-9 sm:py-20"
+            className="px-5 py-16 leading-9 sm:py-20"
           >
             <article className="section-container">
               <h2 className="mb-12 text-3xl font-bold">Projects</h2>
@@ -250,7 +257,7 @@ export default function Home() {
 
           <section
             id="contactSection"
-            className="bg-gray-100 py-16 px-5 leading-9 sm:py-20"
+            className="bg-gray-100 px-5 py-16 leading-9 sm:py-20"
           >
             <article className="section-container">
               <h2 className="mb-12 text-3xl font-bold">Stay Connected</h2>
@@ -276,11 +283,23 @@ export default function Home() {
             </article>
           </section>
 
-          <section className="py-16 px-5 leading-9 sm:py-20">
+          <section className="px-5 py-16 leading-9 sm:py-20">
             <Bio image={avatarImg} name={author} bio={bio} />
           </section>
-        </main>
+        </>
       </Layout>
     </>
   );
-}
+};
+
+export const getStaticProps = async () => {
+  const blogPosts = getBlogPost(3);
+
+  return {
+    props: {
+      blogPosts,
+    },
+  };
+};
+
+export default Home;

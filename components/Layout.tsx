@@ -1,6 +1,6 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { config } from "../config";
+import { config } from "config";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -10,10 +10,14 @@ const { author } = config;
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header name={author} />
-      {children}
+
+      <main role="main" className="flex-1">
+        {children}
+      </main>
+
       <Footer name={author} />
-    </>
+    </div>
   );
 };

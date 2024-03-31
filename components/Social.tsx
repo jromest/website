@@ -1,5 +1,5 @@
 import { Codepen, Github, Twitter } from "./Icons";
-import { config } from "../config";
+import { config } from "config";
 
 interface SocialProps {
   color: string;
