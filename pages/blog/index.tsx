@@ -2,48 +2,17 @@ import React from "react";
 import Link from "next/link";
 import type { NextPage } from "next";
 import Head from "next/head";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 
 import { Layout } from "@/components/Layout";
-import { BLOG_POST_PATH, blogPostFilePath } from "@/utils/mdx";
+import { BlogPost } from "@/utils/types";
 import { config } from "config";
-
-interface BlogPost {
-  data: {
-    title: string;
-    createdAt: string;
-  };
-  content: string;
-  slug: string;
-}
+import { getBlogPost } from "@/utils/mdx";
 
 const { author, description, socials, siteUrl } = config;
 
 const title = `Blog Posts - ${author}`;
 
 const metaImage = "/meta-image.png";
-
-const getBlogPost = (): BlogPost[] => {
-  const blogPosts = blogPostFilePath.map((filePath) => {
-    const source = fs.readFileSync(path.join(BLOG_POST_PATH, filePath), "utf8");
-
-    const { data, content } = matter(source);
-
-    return {
-      data,
-      content,
-      slug: filePath.split(".")[0],
-    } as BlogPost;
-  });
-
-  const sortedBlogPosts = blogPosts.sort(
-    (a, b) => +new Date(b.data.createdAt) - +new Date(a.data.createdAt),
-  );
-
-  return sortedBlogPosts;
-};
 
 interface BlogProps {
   blogPosts: BlogPost[];
@@ -83,13 +52,23 @@ const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
               Blog Posts
             </h1>
 
-            <ul className="space-y-8">
+            <ul className="space-y-9">
               {blogPosts.map((post) => (
                 <li key={post.slug}>
                   <h2 className="text-3xl font-bold">
-                    <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-dark-purple"
+                    >
+                      {post.data.title}
+                    </Link>
                   </h2>
-                  <time className="text-slate-500">{post.data.createdAt}</time>
+
+                  <p className="my-2">{post.data.description}</p>
+
+                  <time className="text-lg text-slate-600">
+                    {post.data.createdAt}
+                  </time>
                 </li>
               ))}
             </ul>

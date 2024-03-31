@@ -1,8 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import type { NextPage } from "next";
+
 import { Layout } from "@/components/Layout";
 import { Hero } from "@/components/Hero";
 import { Bio } from "@/components/Bio";
+import { getBlogPost } from "@/utils/mdx";
+import type { BlogPost } from "@/utils/types";
 import { config } from "config";
 
 const webDesignImage = "/responsive-design.svg";
@@ -40,7 +45,11 @@ const projects = [
   },
 ];
 
-export default function Home() {
+interface HomeProps {
+  blogPosts: BlogPost[];
+}
+
+const Home: NextPage<HomeProps> = ({ blogPosts }) => {
   return (
     <>
       <Head>
@@ -74,6 +83,31 @@ export default function Home() {
 
           <section className="px-5 py-16 leading-9 sm:py-20">
             <article className="section-container">
+              <h2 className="mb-12 text-3xl font-bold">Latest Post</h2>
+
+              <ul className="space-y-9">
+                {blogPosts.map((post) => (
+                  <li key={post.slug}>
+                    <h3 className="text-2xl font-bold">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="text-dark-purple"
+                      >
+                        {post.data.title}
+                      </Link>
+                    </h3>
+
+                    <p className="mt-2">{post.data.description} </p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </section>
+
+          <section className="bg-gray-100 px-5 py-16 leading-9 sm:py-20">
+            <article className="section-container">
+              <h2 className="mb-12 text-3xl font-bold">About</h2>
+
               <div className="flex flex-col items-center justify-around pb-12 sm:flex-row sm:pb-20">
                 <Image
                   src={webDesignImage}
@@ -110,34 +144,6 @@ export default function Home() {
               <p>
                 Outside of work, I am probably cycling, bike packing or
                 traveling. Otherwise, probably watching movies or reading books.
-              </p>
-            </article>
-          </section>
-
-          <section className="bg-gray-100 px-5 py-16 leading-9 sm:py-20">
-            <article className="section-container">
-              <h2 className="mb-12 text-3xl font-bold">Blog</h2>
-
-              <h3 className="mb-6 font-bold">Coming soon...</h3>
-
-              <p className="mb-6">
-                I&apos;m working on a blog to share my ideas, document my
-                learning journey, and write articles about what I&apos;ve
-                learned. Mainly about learning to code, web development, and
-                javascript.
-              </p>
-
-              <p>
-                Follow me on twitter{" "}
-                <a
-                  href={socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link"
-                >
-                  @jromest_
-                </a>{" "}
-                for updates.
               </p>
             </article>
           </section>
@@ -284,4 +290,16 @@ export default function Home() {
       </Layout>
     </>
   );
-}
+};
+
+export const getStaticProps = async () => {
+  const blogPosts = getBlogPost(3);
+
+  return {
+    props: {
+      blogPosts,
+    },
+  };
+};
+
+export default Home;
