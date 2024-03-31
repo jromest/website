@@ -1,0 +1,319 @@
+---
+title: "How I Setup My Laptop for Web Development: Things I do after installing Pop!_OS."
+description: "The tools and setup I used for my laptop for web development workflow and daily usage."
+createdAt: "2024-03-31"
+tags: ["linux", "web-development"]
+---
+
+These are the tools and setup I used for my laptop for web development workflow and daily usage.
+
+## Contents
+
+## Operating System: Pop!\_OS 22.04 LTS
+
+> Download Pop!\_OS here: https://pop.system76.com
+
+### Installation Checklist
+
+1. Update and upgrade the system.
+
+   ```sh
+   sudo apt update
+   sudo apt upgrade
+   sudo apt dist-upgrade
+   ```
+
+2. Update the firmware (if available).
+
+3. Install proprietary media codecs and fonts.
+
+   These are the commonly used proprietary software such as codecs for playing media formats (MP3, AVC, etc.) and fonts (Arial, Times New Roman, etc.).
+
+   ```sh
+   sudo apt install ubuntu-restricted-extras
+   ```
+
+4. Install and enable the firewall.
+
+   To install the GUI:
+
+   ```sh
+   sudo apt install gufw
+   ```
+
+5. Install TLP for better power management.
+
+   TLP is a free, open-source, and feature-rich utility for [optimizing battery consumption on laptops running Ubuntu](https://vitux.com/improving-battery-life-in-ubuntu-with-tlp) and other Linux distributions.
+
+   ```sh
+   sudo apt install tlp
+   sudo tlp start
+   sudo tlp-stat -s # view detailed system information and status of the TLP utility
+   ```
+
+6. Enable TRIM for SSD drives.
+
+   Enabling TRIM can help maintain the performance of SSD over time, extending its life.
+
+   ```sh
+   sudo systemctl enable fstrim.timer
+   ```
+
+### General Settings
+
+1. Show battery percentage.
+
+2. Set ALT+TAB behavior to switch windows, not applications.
+
+   Go to Keyboard Shortcut Settings. Search for ‘Switch windows’ and map ALT+ TAB to it (replacing the existing mapping for switching apps).
+
+3. Set natural scrolling in mouse and touchpad scroll.
+
+4. Display weekday in date and time (Alternatively, use the GNOME tweaks tool GUI).
+
+   ```sh
+   gsettings set org.gnome.desktop.interface clock-show-weekday true
+   ```
+
+## Software Application
+
+### Web Browser
+
+1. Firefox - for personal.
+
+2. Chrome - for work.
+
+#### Browser Settings
+
+1. Set DuckDuckGo as the default search engine.
+
+2. Set `@g` as a Google search shortcut.
+
+3. Disable ask to save logins and passwords.
+
+4. [Enable HTTPS-Only](https://www.eff.org/https-everywhere/set-https-default-your-browser) in all windows.
+
+#### Browser Extensions
+
+1. uBlock Origin
+
+2. Privacy Badger
+
+3. DuckDuckGo Privacy Essentials
+
+4. Facebook Container
+
+5. OneTab
+
+6. React Devtools
+
+7. Apollo Client Devtools
+
+8. Axe Accessibility
+
+9. Grammarly
+
+10. Bitwarden
+
+11. Gnome Shell Integration (Alternatively, use GNOME Extensions Manager)
+
+    - Vitals: GNOME extension
+
+### Music and Media Player
+
+1. VLC (via Pop!\_Shop)
+
+2. Spotify
+
+### Others
+
+1. Flameshot
+
+   Powerful, yet simple to use open-source screenshot software. To add keyboard shortcut, use `flameshot gui` command.
+
+2. OBS Studio
+
+   Streaming and screen video recording software.
+
+3. LibreOffice
+
+   Free and open-source office software suite (documents, spreadsheets, etc.).
+
+4. Slack
+
+   Team communication software.
+
+5. Zoom
+
+   Video communication and meetings.
+
+6. Transmission
+
+   Fast, easy, and free torrent client.
+
+7. Shotcut (via FlatHub)
+
+   Free and open-source video editor.
+
+## Terminal / Shell
+
+> Dotfiles: https://github.com/jromest/dotfiles
+
+1. Update `git` and create a config file.
+
+   Version control system that tracks changes in files.
+
+   ```sh
+   sudo apt install git
+   nano .gitconfig
+   ```
+
+2. Install `zsh`.
+
+   Zsh (Z Shell) is a powerful shell with advanced features and customization options, often used as an alternative to the more common Bash shell.
+
+   ```sh
+   sudo apt install zsh
+   ```
+
+   - Set `zsh` as the default shell (you need to log out and log in to take effect).
+
+     ```sh
+     chsh -s $(which zsh)
+     ```
+
+   - Install `zplug` (zsh plugin manager) and create a `zshrc` config file.
+
+     https://github.com/zplug/zplug
+
+     ```sh
+     nano .zshrc
+     ```
+
+3. Install `tmux`.
+
+   Tmux is a terminal multiplexer that allows multiple terminal sessions to be accessed simultaneously in a single window.
+
+   ```sh
+   sudo apt install tmux
+   ```
+
+   - Install `tpm` (TMUX plugin manager) and create a `tmux` config file.
+
+     https://github.com/tmux-plugins/tpm
+
+     ```sh
+     nano .tmux.conf
+     ```
+
+4. Install `fzf`.
+
+   Command-line fuzzy finder that allows for quick and efficient searching of files and directories.
+
+   https://github.com/junegunn/fzf
+
+5. Install `ripgrep`.
+
+   Ripgrep (rg) is a line-oriented search tool that recursively searches the current directory for a regex pattern.
+
+   https://github.com/BurntSushi/ripgrep
+
+6. Install `bat`.
+
+   A cat clone with syntax highlighting and git integration.
+
+   https://github.com/sharkdp/bat
+
+7. Install `diff-so-fancy`.
+
+   Diff highlighting tool that makes diffs more human-readable and visually appealing.
+
+   https://github.com/so-fancy/diff-so-fancy
+
+8. Install `nnn`.
+
+   A full-featured, tiny, nearly zero-config and incredibly fast terminal file manager.
+
+   https://github.com/jarun/nnn
+
+9. Install `tldr`.
+
+   Simplified and community-driven man page that provides practical examples of command usage.
+
+   https://tldr.sh/
+
+## Development Setup
+
+1. Install NodeJS via `nvm` or Node Version Manager.
+
+   https://github.com/nvm-sh/nvm
+
+2. Install `yarn` classic (via Debian package repository).
+
+   https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable
+
+3. Install VS Code.
+
+   https://code.visualstudio.com
+
+   VS Code extensions:
+
+   1. Night Owl (theme)
+   2. ESLint
+   3. Prettier
+   4. Code Spell Checker
+   5. Auto Rename Tag
+   6. Pretty Typescript Errors
+   7. Quick Lint JS
+   8. Tailwind CSS IntelliSense
+   9. Git Lens
+   10. Docker
+   11. GraphQL: Language Feature Support
+   12. GraphQL: Syntax Highlighting (automatically downloaded by Language Feature Support)
+   13. TODO Highlight
+   14. Vim
+
+4. Install Vim.
+
+   ```sh
+   sudo apt install vim
+   ```
+
+   - Install `vim-plug` (vim plugin manager).
+
+     https://github.com/junegunn/vim-plug
+
+   - Create a vim config and create a tmp directory.
+
+     ```sh
+     vim .vimrc
+     mkdir .vim/tmp
+     ```
+
+5. Install Docker.
+
+   https://docs.docker.com/engine/install/ubuntu
+
+   **Note:** Reboot if having permission error to run docker without sudo.
+
+6. Install docker-compose V1.
+
+   **Note:** Docker Compose V1 stopped receiving updates and is no longer supported. The Docker installation above already includes V2.
+
+   - Download Docker Compose V1.
+
+     ```sh
+     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+     ```
+
+   - Make it executable.
+
+     ```sh
+     sudo chmod +x /usr/local/bin/docker-compose
+     ```
+
+   - Check if successfully installed.
+
+     ```sh
+     docker-compose --version
+     ```
