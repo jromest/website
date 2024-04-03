@@ -16,22 +16,16 @@ import type { MDXComponents } from "mdx/types";
 import { Layout } from "@/components/Layout";
 import { Pre } from "@/components/Pre";
 import { BLOG_POST_PATH, blogPostFilePath } from "@/utils/mdx";
+import type { BlogPostData } from "@/utils/types";
 import { config } from "config";
 
 const { author, socials, siteUrl } = config;
 
 const metaImage = "/meta-image.png";
 
-interface BlogPostMeta {
-  title: string;
-  description: string;
-  createdAt: string;
-  tags: string[];
-}
-
 interface BlogPostProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
-  meta: BlogPostMeta;
+  meta: BlogPostData;
   slug: string;
 }
 

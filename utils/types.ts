@@ -1,9 +1,12 @@
+export interface BlogPostData {
+  title: string;
+  description: string;
+  createdAt: string;
+  tags: string[];
+}
+
 export interface BlogPost {
-  data: {
-    title: string;
-    description: string;
-    createdAt: string;
-  };
+  data: BlogPostData;
   content: string;
   slug: string;
 }
