@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import type { NextPage } from "next";
@@ -6,6 +5,7 @@ import type { NextPage } from "next";
 import { Layout } from "@/components/Layout";
 import { Hero } from "@/components/Hero";
 import { Bio } from "@/components/Bio";
+import { SEO } from "@/components/SEO";
 import { getBlogPost } from "@/utils/mdx";
 import type { BlogPost } from "@/utils/types";
 import { config } from "config";
@@ -15,7 +15,6 @@ const checkIcon = "/checkmark-outline.svg";
 const agroworksImage = "/agroworks-screenshot.jpg";
 const ideaboxImage = "/ideabox-creative-screenshot.jpg";
 const avatarImg = "/avatar.jpg";
-const metaImage = "/meta-image.png";
 
 const { author, title, description, bio, email, socials, siteUrl } = config;
 
@@ -52,27 +51,7 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ blogPosts }) => {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="author" content={author} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href={siteUrl} />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:site" content={socials.twitterHandle} />
-        <meta name="twitter:creator" content={socials.twitterHandle} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={metaImage} />
-
-        <meta property="og:title" content={title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteUrl} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={metaImage} />
-      </Head>
+      <SEO title={title} description={description} canonicalUrl={siteUrl} />
 
       <Layout>
         <>
