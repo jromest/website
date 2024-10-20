@@ -6,6 +6,7 @@ import { Layout } from "@/components/Layout";
 import { SEO } from "@/components/SEO";
 import { getBlogPost } from "@/utils/mdx";
 import type { BlogPost } from "@/utils/types";
+import { formatDate } from "@/utils/date";
 import { config } from "config";
 
 const { author, description, siteUrl } = config;
@@ -49,7 +50,7 @@ const Blog: NextPage<BlogProps> = ({ blogPosts }) => {
                   <p className="my-2">{post.data.description}</p>
 
                   <time className="text-lg text-slate-600">
-                    {post.data.createdAt}
+                    {formatDate(post.data.createdAt)}
                   </time>
                 </li>
               ))}

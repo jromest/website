@@ -17,6 +17,7 @@ import { SEO } from "@/components/SEO";
 import { Pre } from "@/components/Pre";
 import { BLOG_POST_PATH, blogPostFilePath } from "@/utils/mdx";
 import type { BlogPostData } from "@/utils/types";
+import { formatDate } from "@/utils/date";
 import { config } from "config";
 
 const { siteUrl } = config;
@@ -32,7 +33,7 @@ const components = {
 } as MDXComponents;
 
 const BlogPost: NextPage<BlogPostProps> = ({ source, meta, slug }) => {
-  const { title, description, createdAt } = meta;
+  const { title, description, createdAt, updatedAt } = meta;
 
   const canonicalUrl = `${siteUrl}/blog/${slug}`;
 
@@ -52,7 +53,15 @@ const BlogPost: NextPage<BlogPostProps> = ({ source, meta, slug }) => {
               <h1 className="relative z-0 text-4xl font-bold after:absolute after:bottom-1 after:left-0 after:right-0 after:-z-10 after:h-6 after:-rotate-1 after:bg-yellow-gold after:md:h-1/2">
                 {title}
               </h1>
-              <time className="text-slate-500">{createdAt}</time>
+              <time className="text-slate-500">
+                Published on {formatDate(createdAt)}
+              </time>
+
+              {updatedAt ? (
+                <time className="text-slate-500">
+                  Updated on {formatDate(updatedAt)}
+                </time>
+              ) : null}
             </div>
 
             <div className="prose-a:link prose prose-xl prose-slate mx-auto prose-a:no-underline prose-code:before:content-none prose-code:after:content-none md:mx-0 [&_a]:hover:prose-headings:inline-block">
