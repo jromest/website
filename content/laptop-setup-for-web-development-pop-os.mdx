@@ -2,6 +2,7 @@
 title: "How I Setup My Laptop for Web Development: Things I do after installing Pop!_OS."
 description: "The tools and setup I used for my laptop for web development workflow and daily usage."
 createdAt: "2024-03-31"
+updatedAt: "2024-10-20"
 tags: ["linux", "web-development"]
 ---
 
@@ -159,7 +160,7 @@ These are the tools and setup I used for my laptop for web development workflow 
 
 > Dotfiles: https://github.com/jromest/dotfiles
 
-1. Update `git` and create a config file.
+1. Update `git` and create a `.gitconfig` config file.
 
    Version control system that tracks changes in files.
 
@@ -182,9 +183,9 @@ These are the tools and setup I used for my laptop for web development workflow 
      chsh -s $(which zsh)
      ```
 
-   - Install `zplug` (zsh plugin manager) and create a `zshrc` config file.
+   - Install `zinit` (zsh plugin manager) and create a `.zshrc` config file.
 
-     https://github.com/zplug/zplug
+     https://github.com/zdharma-continuum/zinit
 
      ```sh
      nano .zshrc
@@ -198,7 +199,7 @@ These are the tools and setup I used for my laptop for web development workflow 
    sudo apt install tmux
    ```
 
-   - Install `tpm` (TMUX plugin manager) and create a `tmux` config file.
+   - Install `tpm` (TMUX plugin manager) and create a `.tmux.conf` config file.
 
      https://github.com/tmux-plugins/tpm
 
@@ -296,24 +297,8 @@ These are the tools and setup I used for my laptop for web development workflow 
 
    **Note:** Reboot if having permission error to run docker without sudo.
 
-6. Install docker-compose V1.
+## Changelog
 
-   **Note:** Docker Compose V1 stopped receiving updates and is no longer supported. The Docker installation above already includes V2.
-
-   - Download Docker Compose V1.
-
-     ```sh
-     sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-     ```
-
-   - Make it executable.
-
-     ```sh
-     sudo chmod +x /usr/local/bin/docker-compose
-     ```
-
-   - Check if successfully installed.
-
-     ```sh
-     docker-compose --version
-     ```
+- **2024-10-20**:
+  - Replaced `zplug` with `zinit` for zsh plugin manager.
+  - Removed docker-compose V1 installation.
